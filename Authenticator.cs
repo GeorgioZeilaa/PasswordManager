@@ -23,7 +23,7 @@ namespace PasswordManager
 
         public int verifyAccount(string username, string password)
         {
-            return 0;//returns permission level
+            return 0;//returns permission levels
         }
     }
 }
