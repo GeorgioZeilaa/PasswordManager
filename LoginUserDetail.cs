@@ -9,7 +9,7 @@ namespace PasswordManager
     class LoginUserDetail
     {
         string username;
-        Encryption password;
+        string password;
         int permission;
         public string Username
         {
@@ -21,7 +21,7 @@ namespace PasswordManager
             set { permission = value; }
             get { return permission; }
         }
-        public Encryption Password
+        public string Password
         {
             set { password = value; }
             get { return password; }

@@ -25,31 +25,30 @@ namespace PasswordManager
 
         public bool register()
         {
-            string username = Convert.ToString(txt_register_username);
-            string password = "0";
-            if (txt_register_pasword1 == txt_register_password2)
+            string username = Convert.ToString(txt_register_username.Text);
+            string password1 = Convert.ToString(txt_register_pasword1.Text);
+            string password2 = Convert.ToString(txt_register_password2.Text);
+            string password = "";
+
+            if (password1 == password2)
             {
-                password = Convert.ToString(txt_register_pasword1);
+                password = password1;
+                if (authenticator.addAccount(username, password))
+                {
+                    MainInterface settingform = new MainInterface();
+
+                    settingform.Show();
+                    this.Hide();//needs work
+                }
+                else
+                {
+
+                }
             }
             else
             {
                 lbl_register_password_dont_match.Visible = true;
             }
-            
-
-            if(authenticator.addAccount(username,password))
-            {
-                MainInterface settingform = new MainInterface();
-
-                settingform.Show();
-                this.Close();
-            }
-            else
-            {
-                
-            }
-
-
             return false;
         }
 
