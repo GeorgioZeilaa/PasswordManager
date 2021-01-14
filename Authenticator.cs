@@ -20,14 +20,14 @@ namespace PasswordManager
             user.Username = username;
             user.Password = password;
 
-            db.INSERT(user.Username,user.Password);
-
-            return false;
+            return db.addAccount(user.Username, user.Password);
         }
 
         public int verifyAccount(string username, string password)
         {
-            return 0;//returns permission levels
+            user.Username = username;
+            user.Password = password;
+            return db.verifyAccount(user.Username,user.Password);//returns permission levels
         }
     }
 }

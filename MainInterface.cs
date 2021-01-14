@@ -16,5 +16,10 @@ namespace PasswordManager
         {
             InitializeComponent();
         }
+
+        private void MainInterface_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

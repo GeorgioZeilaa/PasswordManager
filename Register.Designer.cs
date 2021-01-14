@@ -37,6 +37,8 @@ namespace PasswordManager
             this.txt_register_password2 = new System.Windows.Forms.TextBox();
             this.lbl_register_password2 = new System.Windows.Forms.Label();
             this.lbl_register_password_dont_match = new System.Windows.Forms.Label();
+            this.lbl_register_failed_registration = new System.Windows.Forms.Label();
+            this.lbl_register_fill_fields = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_register
@@ -106,11 +108,31 @@ namespace PasswordManager
             this.lbl_register_password_dont_match.TabIndex = 7;
             this.lbl_register_password_dont_match.Text = "*Password does not match";
             // 
+            // lbl_register_failed_registration
+            // 
+            this.lbl_register_failed_registration.AutoSize = true;
+            this.lbl_register_failed_registration.Location = new System.Drawing.Point(219, 191);
+            this.lbl_register_failed_registration.Name = "lbl_register_failed_registration";
+            this.lbl_register_failed_registration.Size = new System.Drawing.Size(129, 13);
+            this.lbl_register_failed_registration.TabIndex = 8;
+            this.lbl_register_failed_registration.Text = "Failed to register account!";
+            // 
+            // lbl_register_fill_fields
+            // 
+            this.lbl_register_fill_fields.AutoSize = true;
+            this.lbl_register_fill_fields.Location = new System.Drawing.Point(219, 69);
+            this.lbl_register_fill_fields.Name = "lbl_register_fill_fields";
+            this.lbl_register_fill_fields.Size = new System.Drawing.Size(124, 13);
+            this.lbl_register_fill_fields.TabIndex = 9;
+            this.lbl_register_fill_fields.Text = "Make sure to fill all fields!";
+            // 
             // Register
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbl_register_fill_fields);
+            this.Controls.Add(this.lbl_register_failed_registration);
             this.Controls.Add(this.lbl_register_password_dont_match);
             this.Controls.Add(this.lbl_register_password2);
             this.Controls.Add(this.txt_register_password2);
@@ -137,5 +159,7 @@ namespace PasswordManager
         private System.Windows.Forms.TextBox txt_register_password2;
         private System.Windows.Forms.Label lbl_register_password2;
         private System.Windows.Forms.Label lbl_register_password_dont_match;
+        private System.Windows.Forms.Label lbl_register_failed_registration;
+        private System.Windows.Forms.Label lbl_register_fill_fields;
     }
 }

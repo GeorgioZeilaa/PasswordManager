@@ -19,7 +19,9 @@ namespace PasswordManager
 
         private void btn_main_login_Click(object sender, EventArgs e)
         {
-
+            Login log = new Login();
+            log.ShowDialog();
+            this.Close();
         }
 
         private void btn_main_register_Click(object sender, EventArgs e)

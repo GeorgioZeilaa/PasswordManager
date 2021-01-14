@@ -21,6 +21,11 @@ namespace PasswordManager
         private void Register_Load(object sender, EventArgs e)
         {
             lbl_register_password_dont_match.Visible = false;
+            lbl_register_failed_registration.Visible = false;
+            lbl_register_fill_fields.Visible = false;
+
+            txt_register_pasword1.PasswordChar = '*';
+            txt_register_password2.PasswordChar = '*';
         }
 
         public bool register()
@@ -30,26 +35,38 @@ namespace PasswordManager
             string password2 = Convert.ToString(txt_register_password2.Text);
             string password = "";
 
-            if (password1 == password2)
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password1) && !string.IsNullOrEmpty(password2))
             {
-                password = password1;
-                if (authenticator.addAccount(username, password))
+                if (password1 == password2)
                 {
-                    MainInterface settingform = new MainInterface();
+                    password = password1;
+                    if (authenticator.addAccount(username, password))
+                    {
+                        MainInterface settingform = new MainInterface();
 
-                    settingform.Show();
-                    this.Hide();//needs work
+                        settingform.Show();
+                        this.Hide();//needs work
+                        return true;
+                    }
+                    else
+                    {
+                        lbl_register_fill_fields.Visible = false;
+                        lbl_register_failed_registration.Visible = true;
+                        return false;
+                    }
                 }
                 else
                 {
-
+                    lbl_register_fill_fields.Visible = false;
+                    lbl_register_password_dont_match.Visible = true;
+                    return false;
                 }
             }
-            else
+            else 
             {
-                lbl_register_password_dont_match.Visible = true;
+                lbl_register_fill_fields.Visible = true;
+                return false; 
             }
-            return false;
         }
 
         private void btn_register_Click(object sender, EventArgs e)
