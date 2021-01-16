@@ -29,16 +29,29 @@ namespace PasswordManager
         }
         public bool addAccount(string username, string password)
         {
-            //used to add accounts when registering
-            string sql = "INSERT into UserDetail(Username, Password, Permission) Values('" + username + "','" + password + "','"+ 0 +"')";
+            //used to check if a username already exists
+            string sql = "SELECT COUNT(*) FROM UserDetail WHERE Username = '" + username + "' ";
             try
             {
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
-                cmd.ExecuteNonQuery();
-                connection.Close();
-                
-                return true;//to return true when registration is successful
+                int count = int.Parse(cmd.ExecuteScalar().ToString());
+
+                if(count == 0)//if there is another account with the same username
+                {
+                    //used to add accounts when registering
+                    string sql2 = "INSERT into UserDetail(Username, Password, Permission) Values('" + username + "','" + password + "','" + 0 + "')";
+
+                    MySqlCommand cmd2 = new MySqlCommand(sql2, connection);
+                    cmd2.ExecuteNonQuery();
+                    connection.Close();
+                    return true;//to return true when registration is successful
+                }
+                else
+                {
+                    connection.Close();//making sure connection is closed
+                    return false;//return false if there is already an account that already exists
+                }
             }
             catch(Exception e)
             {
@@ -48,7 +61,7 @@ namespace PasswordManager
         public int verifyAccount(string username, string password)
         {
             //to check if the credentials supplied are correct from the login page
-            string sql = "SELECT COUNT(*) FROM UserDetail WHERE Username = '" + username + "' && Password = '"+password+"'";
+            string sql = "SELECT COUNT(*) FROM UserDetail WHERE Username = '" + username + "' && Password = '" + password + "' ";
             try
             {
                 connection.Open();

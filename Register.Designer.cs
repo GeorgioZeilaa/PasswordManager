@@ -111,11 +111,11 @@ namespace PasswordManager
             // lbl_register_failed_registration
             // 
             this.lbl_register_failed_registration.AutoSize = true;
-            this.lbl_register_failed_registration.Location = new System.Drawing.Point(219, 191);
+            this.lbl_register_failed_registration.Location = new System.Drawing.Point(328, 88);
             this.lbl_register_failed_registration.Name = "lbl_register_failed_registration";
-            this.lbl_register_failed_registration.Size = new System.Drawing.Size(129, 13);
+            this.lbl_register_failed_registration.Size = new System.Drawing.Size(123, 13);
             this.lbl_register_failed_registration.TabIndex = 8;
-            this.lbl_register_failed_registration.Text = "Failed to register account!";
+            this.lbl_register_failed_registration.Text = "*Username already exist!";
             // 
             // lbl_register_fill_fields
             // 

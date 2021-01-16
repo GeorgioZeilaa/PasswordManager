@@ -42,10 +42,6 @@ namespace PasswordManager
                     password = password1;
                     if (authenticator.addAccount(username, password))
                     {
-                        MainInterface settingform = new MainInterface();
-
-                        settingform.Show();
-                        this.Hide();//needs work
                         return true;
                     }
                     else
@@ -71,7 +67,12 @@ namespace PasswordManager
 
         private void btn_register_Click(object sender, EventArgs e)
         {
-            register();
+            if(register())
+            {
+                MainInterface mainInter = new MainInterface();
+                mainInter.ShowDialog();
+                this.Close();
+            }
         }
     }
 }
