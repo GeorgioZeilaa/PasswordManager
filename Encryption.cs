@@ -8,11 +8,20 @@ namespace PasswordManager
 {
     class Encryption
     {
-        private string passwordkey;
+        private string passwordkey = "secret";
 
-        public string encryptDecrypt(string passwordkey)
+        public string encryptDecrypt(string password)
         {
-            return "test";
-        }
+			int dataLen = password.Length;
+			int keyLen = passwordkey.Length;
+			char[] output = new char[dataLen];
+
+			for (int i = 0; i < dataLen; ++i)
+			{
+				output[i] = (char)(password[i] ^ passwordkey[i % keyLen]);
+			}
+
+			return new string(output);
+		}
     }
 }

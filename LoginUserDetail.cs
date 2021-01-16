@@ -11,6 +11,7 @@ namespace PasswordManager
         string username;
         string password;
         int permission;
+        Encryption psw = new Encryption();
         public string Username
         {
             set { username = value; }
@@ -23,7 +24,7 @@ namespace PasswordManager
         }
         public string Password
         {
-            set { password = value; }
+            set { password = psw.encryptDecrypt(value); }
             get { return password; }
         }
     }

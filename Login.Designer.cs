@@ -80,7 +80,7 @@ namespace PasswordManager
             this.txt_login_password.Location = new System.Drawing.Point(311, 144);
             this.txt_login_password.Name = "txt_login_password";
             this.txt_login_password.Size = new System.Drawing.Size(100, 20);
-            this.txt_login_password.TabIndex = 4;
+            this.txt_login_password.TabIndex = 1;
             // 
             // lbl_login_incorrect_info
             // 
