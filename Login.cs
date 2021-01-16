@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace PasswordManager
 {
@@ -52,6 +53,22 @@ namespace PasswordManager
             }
         }
 
+        public bool reset()
+        {
+            string password2 = Interaction.InputBox("Reset password confirmation", "Confirm Password", "", 0, 0);
+            string username = txt_login_username.Text;
+
+            if(txt_login_password.Text == password2)//making sure both passwords are matching
+            {
+                return auth.resetAccount(username, password2);
+            }
+            else
+            {
+                MessageBox.Show("Passwords do not match!");
+            }
+            return false;
+        }
+
         private void btn_login_login_Click(object sender, EventArgs e)
         {
             if (login() > 0)
@@ -64,7 +81,7 @@ namespace PasswordManager
 
         private void btn_login_reset_Click(object sender, EventArgs e)
         {
-
+            reset();
         }
     }
 }

@@ -12,14 +12,13 @@ namespace PasswordManager
         DataBase db;
         public Authenticator()
         {
-            db = new DataBase();
+            db = new DataBase();//to connect to the database mysql
         }
 
         public bool addAccount(string username, string password)
         {
             user.Username = username;
             user.Password = password;
-
             return db.addAccount(user.Username, user.Password);
         }
 
@@ -28,6 +27,13 @@ namespace PasswordManager
             user.Username = username;
             user.Password = password;
             return db.verifyAccount(user.Username,user.Password);//returns permission levels
+        }
+
+        public bool resetAccount(string username, string password)
+        {
+            user.Username = username;
+            user.Password = password;
+            return db.resetAccount(user.Username, user.Password);
         }
     }
 }

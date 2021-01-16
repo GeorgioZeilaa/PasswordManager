@@ -38,7 +38,7 @@ namespace PasswordManager
                 cmd.ExecuteNonQuery();
                 connection.Close();
                 
-                return true;//to return true with registration is successful
+                return true;//to return true when registration is successful
             }
             catch(Exception e)
             {
@@ -73,6 +73,22 @@ namespace PasswordManager
             catch(Exception e)
             {
                 return 0;
+            }
+        }
+        public bool resetAccount(string username, string password)
+        {
+            string sql = "UPDATE UserDetail SET Password = '" + password + "' WHERE Username = '" + username + "' ";
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }
