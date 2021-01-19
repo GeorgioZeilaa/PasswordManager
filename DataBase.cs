@@ -23,8 +23,9 @@ namespace PasswordManager
         public DataBase()
         {
             //the connection to be made to the MySQL database
+
             string connectionString = "SERVER=" + dpIp + ";" + "DATABASE=" +
-            dpName + ";" + "UID=" + dpUsername + ";" + "PASSWORD=" + dpPassword + ";";
+            dpName + ";" + "UID=" + dpUsername + ";" + "PASSWORD=" + dpPassword + ";Charset=utf8;";//potential password fix
             connection = new MySqlConnection(connectionString);
         }
         public bool addAccount(string username, string password)
@@ -39,11 +40,21 @@ namespace PasswordManager
 
                 if(count == 0)//if there is another account with the same username
                 {
+                    var test = Encoding.UTF8.GetBytes(password);
                     //used to add accounts when registering
-                    string sql2 = "INSERT into UserDetail(Username, Password, Permission) Values('" + username + "','" + password + "','" + 0 + "')";
+                    //string sql2 = "INSERT into UserDetail(Username, Password, Permission) Values('" + username + "','" + test.ToString() + "','" + 0 + "')";
+                    
+                    using (var cmd2 = new MySqlCommand("INSERT into UserDetail SET Username= @username, Password = @password, Permission= @permission",
+                                  connection))
+                    {
+                        cmd2.Parameters.Add("@username", MySqlDbType.Blob).Value = username;
+                        cmd2.Parameters.Add("@password", MySqlDbType.Blob).Value = password;
+                        cmd2.Parameters.Add("@permission", MySqlDbType.Blob).Value = 0;
+                        cmd2.ExecuteNonQuery();
+                    }
 
-                    MySqlCommand cmd2 = new MySqlCommand(sql2, connection);
-                    cmd2.ExecuteNonQuery();
+                    //MySqlCommand cmd2 = new MySqlCommand(sql2, connection);
+                    //cmd2.ExecuteNonQuery();
                     connection.Close();
                     return true;//to return true when registration is successful
                 }
@@ -60,6 +71,7 @@ namespace PasswordManager
         }
         public int verifyAccount(string username, string password)
         {
+            var test = Encoding.UTF8.GetBytes(password);
             //to check if the credentials supplied are correct from the login page
             string sql = "SELECT COUNT(*) FROM UserDetail WHERE Username = '" + username + "' && Password = '" + password + "' ";
             try
@@ -85,6 +97,7 @@ namespace PasswordManager
             }
             catch(Exception e)
             {
+                //Console.WriteLine(e); debug
                 return 0;
             }
         }

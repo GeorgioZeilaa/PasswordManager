@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace PasswordManager
 {
-    class ApplicationAccount
+    class ApplicationAccount : AddAppAccount
     {
         private string name;
         public void add()
         {
-
+            DataBase db = new DataBase();
+            
         }
         public string Name
         {

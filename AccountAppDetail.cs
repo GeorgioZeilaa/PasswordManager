@@ -9,7 +9,8 @@ namespace PasswordManager
     class AccountAppDetail
     {
         private string username;
-        private Encryption password;
+        private string password;
+        Encryption encrypt = new Encryption();
         private string dateUpdated;
         private string dateCreated;
 
@@ -18,7 +19,7 @@ namespace PasswordManager
             set { username = value; }
             get { return username; }
         }
-        public Encryption Password
+        public string Password
         {
             set { password = value; }
             get { return password; }

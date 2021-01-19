@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PasswordManager
 {
-    class GameAccount
+    class GameAccount : AddAppAccount
     {
         private string developer;
 

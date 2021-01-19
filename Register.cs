@@ -69,8 +69,8 @@ namespace PasswordManager
         {
             if(register())
             {
-                MainInterface mainInter = new MainInterface();
-                mainInter.ShowDialog();
+                Login log = new Login();
+                log.ShowDialog();
                 this.Close();
             }
         }

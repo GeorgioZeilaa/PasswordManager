@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PasswordManager
 {
-    class WebsiteAccount
+    class WebsiteAccount : AddAppAccount
     {
         private string name;
         private string url;

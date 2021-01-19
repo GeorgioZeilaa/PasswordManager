@@ -71,9 +71,10 @@ namespace PasswordManager
 
         private void btn_login_login_Click(object sender, EventArgs e)
         {
-            if (login() > 0)
+            int permission = login();
+            if (permission > 0)
             {
-                MainInterface mainInter = new MainInterface();
+                MainInterface mainInter = new MainInterface(txt_login_username.Text,permission);
                 mainInter.ShowDialog();
                 this.Close();
             }
