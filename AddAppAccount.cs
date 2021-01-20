@@ -90,6 +90,7 @@ namespace PasswordManager
             account.Username = txt_add_app_account_username.Text;
             account.Password = txt_add_app_account_password.Text;
             account.DateCreated = DateTime.Now.ToString("hh,mm,ss,dd,MM,yyyy");
+            account.DateUpdated = account.DateCreated;
 
             if (!string.IsNullOrEmpty(account.Username) && !string.IsNullOrEmpty(account.Username))
             {

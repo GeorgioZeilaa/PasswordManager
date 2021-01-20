@@ -117,7 +117,21 @@ namespace PasswordManager
         {
             try
             {
+                connection.Open();
+                using (var cmd = new MySqlCommand("INSERT into GameAccount SET UserID= @userid, Username= @username, " +
+                    "Password = @password, DateCreated= @datecreated, DateUpdated= @dateupated, Name= @name" +
+                    "", connection))
+                {
+                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = 1;
+                    cmd.Parameters.Add("@username", MySqlDbType.Blob).Value = detail.Username;
+                    cmd.Parameters.Add("@password", MySqlDbType.Blob).Value = detail.Password;
+                    cmd.Parameters.Add("@datecreated", MySqlDbType.Blob).Value = detail.DateCreated;
+                    cmd.Parameters.Add("@dateupated", MySqlDbType.Blob).Value = detail.DateUpdated;
+                    cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = test;
+                    cmd.ExecuteNonQuery();
+                }
 
+                connection.Close();
                 return true;
             }
             catch(Exception e)
