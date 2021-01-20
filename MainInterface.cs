@@ -14,6 +14,7 @@ namespace PasswordManager
     {
         private string username;
         private int permission;
+        AddAppAccount addappuser = new AddAppAccount();
         public MainInterface(string username, int permission)
         {
             this.username = username;
@@ -38,8 +39,7 @@ namespace PasswordManager
 
         public void add()
         {
-            AddAppAccount add = new AddAppAccount();
-            add.ShowDialog();
+            addappuser.ShowDialog();
         }
 
         public void delete()

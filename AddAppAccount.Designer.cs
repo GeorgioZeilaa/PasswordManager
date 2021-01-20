@@ -181,6 +181,7 @@ namespace PasswordManager
             this.btn_add_app_account_generatepassword.TabIndex = 17;
             this.btn_add_app_account_generatepassword.Text = "Generate";
             this.btn_add_app_account_generatepassword.UseVisualStyleBackColor = true;
+            this.btn_add_app_account_generatepassword.Click += new System.EventHandler(this.btn_add_app_account_generatepassword_Click);
             // 
             // txt_add_app_account_website_name
             // 

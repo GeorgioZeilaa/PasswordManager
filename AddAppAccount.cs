@@ -111,5 +111,12 @@ namespace PasswordManager
                 }
             }
         }
+
+        private void btn_add_app_account_generatepassword_Click(object sender, EventArgs e)
+        {
+            //Generating a password function from the PasswordGenerator class will return a string of random characters
+            PasswordGenerator generate = new PasswordGenerator();
+            txt_add_app_account_password.Text =  generate.generatePassword();
+        }
     }
 }
