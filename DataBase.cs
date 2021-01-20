@@ -47,7 +47,7 @@ namespace PasswordManager
                     {
                         cmd2.Parameters.Add("@username", MySqlDbType.Blob).Value = username;
                         cmd2.Parameters.Add("@password", MySqlDbType.Blob).Value = password;
-                        cmd2.Parameters.Add("@permission", MySqlDbType.Blob).Value = 0;
+                        cmd2.Parameters.Add("@permission", MySqlDbType.Blob).Value = 1;
                         cmd2.ExecuteNonQuery();
                     }
 
@@ -113,7 +113,7 @@ namespace PasswordManager
             }
         }
 
-        public bool add()
+        public bool add(AccountAppDetail detail, string test)
         {
             try
             {

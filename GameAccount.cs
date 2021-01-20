@@ -10,7 +10,7 @@ namespace PasswordManager
     {
         private string developer;
 
-        private void add()
+        public override void Add(AccountAppDetail detail)
         {
 
         }

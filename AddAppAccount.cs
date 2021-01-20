@@ -18,9 +18,9 @@ namespace PasswordManager
             InitializeComponent();
         }
 
-        public virtual void add()
+        public virtual void Add(AccountAppDetail detail)
         {
-
+            
         }
 
         public string randomPassword()
@@ -96,20 +96,17 @@ namespace PasswordManager
                 if (rdb_add_app_account_application.Checked)
                 {
                     AddAppAccount app = new ApplicationAccount();
-                    app.add();
-                    string name = app.Name;
-                    DataBase db = new DataBase();
-                    
+                    app.Add(account);
                 }
                 if (rdb_add_app_account_game.Checked)
                 {
                     AddAppAccount game = new GameAccount();
-                    game.add();
+                    game.Add(account);
                 }
                 if (rdb_add_app_account_website.Checked)
                 {
                     AddAppAccount website = new WebsiteAccount();
-                    website.add();
+                    website.Add(account);
                 }
             }
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PasswordManager
 {
-    class AccountAppDetail
+    public class AccountAppDetail
     {
         private string username;
         private string password;
@@ -21,7 +21,7 @@ namespace PasswordManager
         }
         public string Password
         {
-            set { password = value; }
+            set { password = encrypt.encryptDecrypt(value); }
             get { return password; }
         }
         public string DateUpdated

@@ -8,17 +8,17 @@ namespace PasswordManager
 {
     class WebsiteAccount : AddAppAccount
     {
-        private string name;
+        private string nameWeb;
         private string url;
 
-        public void add()
+        public override void Add(AccountAppDetail detail)
         {
 
         }
-        public string Name
+        public string NameWeb
         {
-            set { name = value; }
-            get { return name; }
+            set { nameWeb = value; }
+            get { return nameWeb; }
         }
         public string Url
         {
