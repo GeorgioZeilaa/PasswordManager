@@ -65,15 +65,19 @@ namespace PasswordManager
                 return false;//false if there are any errors
             }
         }
-        public int verifyAccount(string username, string password)
+        public int[] verifyAccount(string username, string password)
         {
             //to check if the credentials supplied are correct from the login page
             string sql = "SELECT COUNT(*) FROM UserDetail WHERE Username = '" + username + "' && Password = '" + password + "' ";
+            int []permission_and_id = new int[2];
             try
             {
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 int count = int.Parse(cmd.ExecuteScalar().ToString());
+
+                permission_and_id[0] = 0;
+                permission_and_id[1] = 0;
 
                 if (count == 1)
                 {
@@ -83,17 +87,20 @@ namespace PasswordManager
                     var cursor = cmd2.ExecuteReader();
                     cursor.Read();
                     int permission = cursor.GetInt32("Permission");//to save the permission level before the connection is closed
+                    int id = cursor.GetInt32("ID");
+                    permission_and_id[0] = permission;
+                    permission_and_id[1] = id;
                     connection.Close();
 
-                    return permission;//to return the permission level of the user, this should be greater than 1 to at least login
+                    return permission_and_id;//to return the permission level of the user, this should be greater than 1 to at least login
                 }
                 connection.Close();
-                return 0;//0 means no permission to login
+                return permission_and_id;//0 means no permission to login
             }
             catch(Exception e)
             {
                 //Console.WriteLine(e); debug
-                return 0;
+                return permission_and_id;
             }
         }
         public bool resetAccount(string username, string password)
@@ -118,11 +125,11 @@ namespace PasswordManager
             try
             {
                 connection.Open();
-                using (var cmd = new MySqlCommand("INSERT into GameAccount SET UserID= @userid, Username= @username, " +
+                using (var cmd = new MySqlCommand("INSERT into ApplicationAccount SET UserID= @userid, Username= @username, " +
                     "Password = @password, DateCreated= @datecreated, DateUpdated= @dateupated, Name= @name" +
                     "", connection))
                 {
-                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = 1;
+                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = detail.UserID;
                     cmd.Parameters.Add("@username", MySqlDbType.Blob).Value = detail.Username;
                     cmd.Parameters.Add("@password", MySqlDbType.Blob).Value = detail.Password;
                     cmd.Parameters.Add("@datecreated", MySqlDbType.Blob).Value = detail.DateCreated;
@@ -137,6 +144,32 @@ namespace PasswordManager
             catch(Exception e)
             {
                 return false;
+            }
+        }
+        public MySqlDataReader viewPassword(int []permission_and_id)
+        {
+            int permission = permission_and_id[0];
+            int userid = permission_and_id[1];
+            if(permission>1)
+            {  
+                using (var cmd = new MySqlCommand("SELECT * FROM ApplicationAccount,GameAccount,WebsiteAccount", connection))
+                {
+                    connection.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    connection.Close();
+                    return reader;
+                }
+            }
+            else
+            {
+                using (var cmd = new MySqlCommand("SELECT * FROM ApplicationAccount A,GameAccount G,WebsiteAccount W WHERE A.UserID=@userid AND G.UserID=@userid AND W.UserID=@userid", connection))
+                {
+                    connection.Open();
+                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = userid;
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    connection.Close();
+                    return reader;
+                }
             }
         }
     }

@@ -10,10 +10,16 @@ namespace PasswordManager
     {
         private string username;
         private string password;
+        private int userID;
         Encryption encrypt = new Encryption();
         private string dateUpdated;
         private string dateCreated;
 
+        public int UserID
+        {
+            set { userID = value; }
+            get { return userID; }
+        }
         public string Username
         {
             set { username = value; }

@@ -13,6 +13,7 @@ namespace PasswordManager
     public partial class AddAppAccount : Form
     {
         AccountAppDetail account = new AccountAppDetail();
+        public int userID;
         public AddAppAccount()
         {
             InitializeComponent();
@@ -91,8 +92,10 @@ namespace PasswordManager
             account.Password = txt_add_app_account_password.Text;
             account.DateCreated = DateTime.Now.ToString("hh,mm,ss,dd,MM,yyyy");
             account.DateUpdated = account.DateCreated;
+            account.UserID = userID;
 
-            if (!string.IsNullOrEmpty(account.Username) && !string.IsNullOrEmpty(account.Username))
+            //checking if any fields are empty
+            if (!string.IsNullOrEmpty(account.Username) && !string.IsNullOrEmpty(account.Password))
             {
                 if (rdb_add_app_account_application.Checked)
                 {
@@ -109,7 +112,9 @@ namespace PasswordManager
                     AddAppAccount website = new WebsiteAccount();
                     website.Add(account);
                 }
+                MessageBox.Show("Succussfully Added New Account!");
             }
+            this.Close();
         }
 
         private void btn_add_app_account_generatepassword_Click(object sender, EventArgs e)

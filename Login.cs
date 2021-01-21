@@ -26,30 +26,34 @@ namespace PasswordManager
             lbl_login_fill_field.Visible = false;
             lbl_login_incorrect_info.Visible = false;
         }
-        public int login()
+        public int[] login()
         {
+            int[] permission_and_id = new int[2];
+            permission_and_id[0] = 0;
+            permission_and_id[1] = 0;
+
             string username = txt_login_username.Text;
             string password = txt_login_password.Text;
 
             if(!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {
                 lbl_login_fill_field.Visible = false;//if they are not empty then it should not show that error message anymore
-                int permission = auth.verifyAccount(username, password);
+                permission_and_id = auth.verifyAccount(username, password);
                 
-                if (permission > 0)//anything above 0 is able to login successfully
+                if (permission_and_id[0] > 0)//anything above 0 is able to login successfully
                 {
-                    return permission;
+                    return permission_and_id;
                 }
                 else 
                 {
                     lbl_login_incorrect_info.Visible = true;
-                    return 0;
+                    return permission_and_id;
                 }
             }
             else 
             {
                 lbl_login_fill_field.Visible = true;
-                return 0;
+                return permission_and_id;
             }
         }
 
@@ -71,10 +75,10 @@ namespace PasswordManager
 
         private void btn_login_login_Click(object sender, EventArgs e)
         {
-            int permission = login();
-            if (permission > 0)
+            int []permission_and_id = login();
+            if (permission_and_id[0] > 0)
             {
-                MainInterface mainInter = new MainInterface(txt_login_username.Text,permission);
+                MainInterface mainInter = new MainInterface(txt_login_username.Text, permission_and_id);
                 mainInter.ShowDialog();
                 this.Close();
             }
