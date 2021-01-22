@@ -29,10 +29,12 @@ namespace PasswordManager
             connection = new MySqlConnection(connectionString);
             connection.Open();
         }
+
         ~DataBase()
         {
             connection.Close();
         }
+
         public bool addAccount(string username, string password)
         {
             //used to check if a username already exists
@@ -67,6 +69,7 @@ namespace PasswordManager
                 return false;//false if there are any errors
             }
         }
+
         public int[] verifyAccount(string username, string password)
         {
             //to check if the credentials supplied are correct from the login page
@@ -104,6 +107,7 @@ namespace PasswordManager
                 return permission_and_id;
             }
         }
+
         public bool resetAccount(string username, string password)
         {
             string sql = "UPDATE UserDetail SET Password = '" + password + "' WHERE Username = '" + username + "' ";
@@ -120,7 +124,7 @@ namespace PasswordManager
             }
         }
 
-        public bool add(AccountAppDetail detail, string test)
+        public bool addapplication(AccountAppDetail detail, string name)
         {
             try
             {
@@ -133,7 +137,7 @@ namespace PasswordManager
                     cmd.Parameters.Add("@password", MySqlDbType.Blob).Value = detail.Password;
                     cmd.Parameters.Add("@datecreated", MySqlDbType.Blob).Value = detail.DateCreated;
                     cmd.Parameters.Add("@dateupated", MySqlDbType.Blob).Value = detail.DateUpdated;
-                    cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = test;
+                    cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = name;
                     cmd.ExecuteNonQuery();
                 }
 
@@ -145,6 +149,60 @@ namespace PasswordManager
                 return false;
             }
         }
+
+        public bool addgame(AccountAppDetail detail, string name)
+        {
+            try
+            {
+                using (var cmd = new MySqlCommand("INSERT into GameAccount SET UserID= @userid, Username= @username, " +
+                    "Password = @password, DateCreated= @datecreated, DateUpdated= @dateupated, Name= @name" +
+                    "", connection))
+                {
+                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = detail.UserID;
+                    cmd.Parameters.Add("@username", MySqlDbType.Blob).Value = detail.Username;
+                    cmd.Parameters.Add("@password", MySqlDbType.Blob).Value = detail.Password;
+                    cmd.Parameters.Add("@datecreated", MySqlDbType.Blob).Value = detail.DateCreated;
+                    cmd.Parameters.Add("@dateupated", MySqlDbType.Blob).Value = detail.DateUpdated;
+                    cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = name;
+                    cmd.ExecuteNonQuery();
+                }
+
+                connection.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool addwebsite(AccountAppDetail detail, string name, string url)
+        {
+            try
+            {
+                using (var cmd = new MySqlCommand("INSERT into WebsiteAccount SET UserID= @userid, Username= @username, " +
+                    "Password = @password, DateCreated= @datecreated, DateUpdated= @dateupated, Name= @name, URL= @url" +
+                    "", connection))
+                {
+                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = detail.UserID;
+                    cmd.Parameters.Add("@username", MySqlDbType.Blob).Value = detail.Username;
+                    cmd.Parameters.Add("@password", MySqlDbType.Blob).Value = detail.Password;
+                    cmd.Parameters.Add("@datecreated", MySqlDbType.Blob).Value = detail.DateCreated;
+                    cmd.Parameters.Add("@dateupated", MySqlDbType.Blob).Value = detail.DateUpdated;
+                    cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = name;
+                    cmd.Parameters.Add("@url", MySqlDbType.Blob).Value = url;
+                    cmd.ExecuteNonQuery();
+                }
+
+                connection.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public MySqlDataReader viewPassword(int []permission_and_id, string table)
         {
             int permission = permission_and_id[0];

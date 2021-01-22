@@ -21,7 +21,7 @@ namespace PasswordManager
             DataBase db = new DataBase();
             TextBox name = Application.OpenForms["AddAppAccount"].Controls["txt_add_app_account_applicationname"] as TextBox;
             NameApp = name.Text;
-            db.add(detail, NameApp);
+            db.addapplication(detail, NameApp);
         }
     }
 }
