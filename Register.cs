@@ -69,10 +69,15 @@ namespace PasswordManager
         {
             if(register())
             {
-                Login log = new Login();
-                log.ShowDialog();
-                this.Close();
+                this.Hide();
+                Login login = new Login();
+                login.Show();
             }
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Main main = new Main();
+            main.Show();
         }
     }
 }

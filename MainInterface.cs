@@ -42,7 +42,7 @@ namespace PasswordManager
 
         public void add()
         {
-            addappuser.ShowDialog();
+            addappuser.Show();
         }
 
         public void delete()
@@ -58,7 +58,7 @@ namespace PasswordManager
         private void lbl_main_interface_view_passwords_Click(object sender, EventArgs e)
         {
             ViewPassword viewpassword = new ViewPassword(permission_and_id);
-            viewpassword.ShowDialog();
+            viewpassword.Show();
         }
 
         private void lbl_main_interface_search_Click(object sender, EventArgs e)
@@ -69,6 +69,16 @@ namespace PasswordManager
         private void lbl_main_interface_add_Click(object sender, EventArgs e)
         {
             add();
+        }
+
+        private void btn_mainInterface_Log_Out_Click(object sender, EventArgs e)
+        {
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
         }
     }
 }

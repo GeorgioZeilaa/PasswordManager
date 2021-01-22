@@ -15,20 +15,25 @@ namespace PasswordManager
         public Main()
         {
             InitializeComponent();
+            this.Show();
         }
 
         private void btn_main_login_Click(object sender, EventArgs e)
         {
-            Login log = new Login();
-            log.ShowDialog();
-            this.Close();
+            this.Hide();
+            Login login = new Login();
+            login.Show();
         }
 
         private void btn_main_register_Click(object sender, EventArgs e)
         {
-            Register reg = new Register();
-            reg.ShowDialog();
-            this.Close();
+            this.Hide();
+            Register register = new Register();
+            register.Show();
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

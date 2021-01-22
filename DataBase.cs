@@ -55,12 +55,10 @@ namespace PasswordManager
                         cmd2.Parameters.Add("@permission", MySqlDbType.Blob).Value = 1;
                         cmd2.ExecuteNonQuery();
                     }
-                    connection.Close();
                     return true;//to return true when registration is successful
                 }
                 else
                 {
-                    connection.Close();//making sure connection is closed
                     return false;//return false if there is already an account that already exists
                 }
             }
@@ -94,11 +92,9 @@ namespace PasswordManager
                     int id = cursor.GetInt32("ID");
                     permission_and_id[0] = permission;
                     permission_and_id[1] = id;
-                    connection.Close();
 
                     return permission_and_id;//to return the permission level of the user, this should be greater than 1 to at least login
                 }
-                connection.Close();
                 return permission_and_id;//0 means no permission to login
             }
             catch(Exception e)
@@ -115,7 +111,6 @@ namespace PasswordManager
             {
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 cmd.ExecuteNonQuery();
-                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -141,7 +136,6 @@ namespace PasswordManager
                     cmd.ExecuteNonQuery();
                 }
 
-                connection.Close();
                 return true;
             }
             catch(Exception e)
@@ -166,8 +160,6 @@ namespace PasswordManager
                     cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = name;
                     cmd.ExecuteNonQuery();
                 }
-
-                connection.Close();
                 return true;
             }
             catch (Exception e)
@@ -193,8 +185,6 @@ namespace PasswordManager
                     cmd.Parameters.Add("@url", MySqlDbType.Blob).Value = url;
                     cmd.ExecuteNonQuery();
                 }
-
-                connection.Close();
                 return true;
             }
             catch (Exception e)

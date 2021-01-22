@@ -83,6 +83,7 @@ namespace PasswordManager
             this.btn_mainInterface_Log_Out.TabIndex = 4;
             this.btn_mainInterface_Log_Out.Text = "Log Out";
             this.btn_mainInterface_Log_Out.UseVisualStyleBackColor = true;
+            this.btn_mainInterface_Log_Out.Click += new System.EventHandler(this.btn_mainInterface_Log_Out_Click);
             // 
             // MainInterface
             // 

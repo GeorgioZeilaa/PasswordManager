@@ -78,15 +78,20 @@ namespace PasswordManager
             int []permission_and_id = login();
             if (permission_and_id[0] > 0)
             {
+                this.Hide();
                 MainInterface mainInter = new MainInterface(txt_login_username.Text, permission_and_id);
-                mainInter.ShowDialog();
-                this.Close();
+                mainInter.Show();
             }
         }
 
         private void btn_login_reset_Click(object sender, EventArgs e)
         {
             reset();
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            Main main = new Main();
+            main.Show();
         }
     }
 }
