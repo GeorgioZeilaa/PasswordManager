@@ -27,6 +27,11 @@ namespace PasswordManager
             string connectionString = "SERVER=" + dpIp + ";" + "DATABASE=" +
             dpName + ";" + "UID=" + dpUsername + ";" + "PASSWORD=" + dpPassword + ";Charset=utf8;";//using UTF-8 for unicode encrypted password cipher
             connection = new MySqlConnection(connectionString);
+            connection.Open();
+        }
+        ~DataBase()
+        {
+            connection.Close();
         }
         public bool addAccount(string username, string password)
         {
@@ -34,14 +39,12 @@ namespace PasswordManager
             string sql = "SELECT COUNT(*) FROM UserDetail WHERE Username = '" + username + "' ";
             try
             {
-                connection.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 int count = int.Parse(cmd.ExecuteScalar().ToString());
 
                 if(count == 0)//if there is another account with the same username
                 {
                     //used to add accounts when registering
-                    
                     using (var cmd2 = new MySqlCommand("INSERT into UserDetail SET Username= @username, Password = @password, Permission= @permission",
                                   connection))
                     {
@@ -50,7 +53,6 @@ namespace PasswordManager
                         cmd2.Parameters.Add("@permission", MySqlDbType.Blob).Value = 1;
                         cmd2.ExecuteNonQuery();
                     }
-
                     connection.Close();
                     return true;//to return true when registration is successful
                 }
@@ -72,7 +74,6 @@ namespace PasswordManager
             int []permission_and_id = new int[2];
             try
             {
-                connection.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 int count = int.Parse(cmd.ExecuteScalar().ToString());
 
@@ -108,7 +109,6 @@ namespace PasswordManager
             string sql = "UPDATE UserDetail SET Password = '" + password + "' WHERE Username = '" + username + "' ";
             try
             {
-                connection.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 cmd.ExecuteNonQuery();
                 connection.Close();
@@ -124,7 +124,6 @@ namespace PasswordManager
         {
             try
             {
-                connection.Open();
                 using (var cmd = new MySqlCommand("INSERT into ApplicationAccount SET UserID= @userid, Username= @username, " +
                     "Password = @password, DateCreated= @datecreated, DateUpdated= @dateupated, Name= @name" +
                     "", connection))
@@ -146,28 +145,25 @@ namespace PasswordManager
                 return false;
             }
         }
-        public MySqlDataReader viewPassword(int []permission_and_id)
+        public MySqlDataReader viewPassword(int []permission_and_id, string table)
         {
             int permission = permission_and_id[0];
             int userid = permission_and_id[1];
+            //checking if admin or user.
             if(permission>1)
             {  
-                using (var cmd = new MySqlCommand("SELECT * FROM ApplicationAccount,GameAccount,WebsiteAccount", connection))
+                using (var cmd = new MySqlCommand("SELECT * FROM "+table.ToString()+"", connection))
                 {
-                    connection.Open();
                     MySqlDataReader reader = cmd.ExecuteReader();
-                    connection.Close();
                     return reader;
                 }
             }
             else
             {
-                using (var cmd = new MySqlCommand("SELECT * FROM ApplicationAccount A,GameAccount G,WebsiteAccount W WHERE A.UserID=@userid AND G.UserID=@userid AND W.UserID=@userid", connection))
+                using (var cmd = new MySqlCommand("SELECT * FROM " + table.ToString() + " WHERE UserID=@userid", connection))
                 {
-                    connection.Open();
-                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = userid;
+                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = userid;//retrieving only the passwords for that specific user
                     MySqlDataReader reader = cmd.ExecuteReader();
-                    connection.Close();
                     return reader;
                 }
             }

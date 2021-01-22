@@ -18,18 +18,15 @@ namespace PasswordManager
         {
             InitializeComponent();
         }
-
         public virtual void Add(AccountAppDetail detail)
         {
             
         }
-
         public string randomPassword()
         {
             PasswordGenerator generate = new PasswordGenerator();
             return generate.generatePassword();
         }
-
         private void AddAppAccount_Load(object sender, EventArgs e)
         {
             lbl_add_app_application_website_name.Visible = false;
@@ -43,7 +40,6 @@ namespace PasswordManager
             lbl_add_app_account_application_name.Visible = false;
             txt_add_app_account_applicationname.Visible = false;
         }
-
         private void rdb_add_app_account_website_CheckedChanged(object sender, EventArgs e)
         {
             lbl_add_app_account_game_developer.Visible = false;
@@ -57,7 +53,6 @@ namespace PasswordManager
             lbl_add_app_account_website_url.Visible = true;
             txt_add_app_account_website_url.Visible = true;
         }
-
         private void rdb_add_app_account_game_CheckedChanged(object sender, EventArgs e)
         {
             lbl_add_app_application_website_name.Visible = false;
@@ -71,7 +66,6 @@ namespace PasswordManager
             lbl_add_app_account_game_developer.Visible = true;
             txt_add_app_account_developer.Visible = true;
         }
-
         private void rdb_add_app_account_application_CheckedChanged(object sender, EventArgs e)
         {
             lbl_add_app_application_website_name.Visible = false;
@@ -85,7 +79,6 @@ namespace PasswordManager
             lbl_add_app_account_application_name.Visible = true;
             txt_add_app_account_applicationname.Visible = true;
         }
-
         private void btn_add_app_account_create_Click(object sender, EventArgs e)
         {
             account.Username = txt_add_app_account_username.Text;
@@ -116,7 +109,6 @@ namespace PasswordManager
             }
             this.Close();
         }
-
         private void btn_add_app_account_generatepassword_Click(object sender, EventArgs e)
         {
             //Generating a password function from the PasswordGenerator class will return a string of random characters

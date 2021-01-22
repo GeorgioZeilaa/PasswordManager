@@ -33,6 +33,7 @@ namespace PasswordManager
             this.lbl_main_interface_view_passwords = new System.Windows.Forms.Button();
             this.lbl_main_interface_search = new System.Windows.Forms.Button();
             this.lbl_main_interface_add = new System.Windows.Forms.Button();
+            this.btn_mainInterface_Log_Out = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_main_interface_main
@@ -74,11 +75,21 @@ namespace PasswordManager
             this.lbl_main_interface_add.UseVisualStyleBackColor = true;
             this.lbl_main_interface_add.Click += new System.EventHandler(this.lbl_main_interface_add_Click);
             // 
+            // btn_mainInterface_Log_Out
+            // 
+            this.btn_mainInterface_Log_Out.Location = new System.Drawing.Point(12, 12);
+            this.btn_mainInterface_Log_Out.Name = "btn_mainInterface_Log_Out";
+            this.btn_mainInterface_Log_Out.Size = new System.Drawing.Size(98, 23);
+            this.btn_mainInterface_Log_Out.TabIndex = 4;
+            this.btn_mainInterface_Log_Out.Text = "Log Out";
+            this.btn_mainInterface_Log_Out.UseVisualStyleBackColor = true;
+            // 
             // MainInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btn_mainInterface_Log_Out);
             this.Controls.Add(this.lbl_main_interface_add);
             this.Controls.Add(this.lbl_main_interface_search);
             this.Controls.Add(this.lbl_main_interface_view_passwords);
@@ -97,5 +108,6 @@ namespace PasswordManager
         private System.Windows.Forms.Button lbl_main_interface_view_passwords;
         private System.Windows.Forms.Button lbl_main_interface_search;
         private System.Windows.Forms.Button lbl_main_interface_add;
+        private System.Windows.Forms.Button btn_mainInterface_Log_Out;
     }
 }
