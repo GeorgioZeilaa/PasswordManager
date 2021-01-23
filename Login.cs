@@ -25,6 +25,8 @@ namespace PasswordManager
             lbl_login_failed_login.Visible = false;
             lbl_login_fill_field.Visible = false;
             lbl_login_incorrect_info.Visible = false;
+
+            txt_login_password.PasswordChar = '*';
         }
         public int[] login()
         {

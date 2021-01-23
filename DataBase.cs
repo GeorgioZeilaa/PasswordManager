@@ -23,11 +23,18 @@ namespace PasswordManager
         public DataBase()
         {
             //the connection to be made to the MySQL database
-
-            string connectionString = "SERVER=" + dpIp + ";" + "DATABASE=" +
-            dpName + ";" + "UID=" + dpUsername + ";" + "PASSWORD=" + dpPassword + ";Charset=utf8;";//using UTF-8 for unicode encrypted password cipher
-            connection = new MySqlConnection(connectionString);
-            connection.Open();
+            try
+            {
+                string connectionString = "SERVER=" + dpIp + ";" + "DATABASE=" +
+                dpName + ";" + "UID=" + dpUsername + ";" + "PASSWORD=" + dpPassword + ";Charset=utf8;";//using UTF-8 for unicode encrypted password cipher
+                connection = new MySqlConnection(connectionString);
+                connection.Open();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("ERROR:", e);
+            }
+            
         }
 
         ~DataBase()
@@ -213,6 +220,26 @@ namespace PasswordManager
                     cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = userid;//retrieving only the passwords for that specific user
                     MySqlDataReader reader = cmd.ExecuteReader();
                     return reader;
+                }
+            }
+        }
+
+        public bool delete(string[] info)
+        {
+            int size = info.Count()-1;//getting the table name
+
+            using (var cmd = new MySqlCommand("DELETE FROM "+info[size]+" WHERE ID=@id", connection))
+            {
+                try
+                {
+                    cmd.Parameters.Add("@id", MySqlDbType.Blob).Value = info[0];//retrieving the specific unique ID to delete that sepcific record
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("ERROR:", e);
+                    return false;
                 }
             }
         }

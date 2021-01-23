@@ -42,7 +42,7 @@ namespace PasswordManager
 
         public void add()
         {
-            addappuser.Show();
+            addappuser.Show();//problem
         }
 
         public void delete()
@@ -52,7 +52,7 @@ namespace PasswordManager
 
         public void modify()
         {
-
+            
         }
 
         private void lbl_main_interface_view_passwords_Click(object sender, EventArgs e)
