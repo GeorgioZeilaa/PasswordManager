@@ -27,6 +27,8 @@ namespace PasswordManager
         private void btn_modifyoptionforms_edit_Click(object sender, EventArgs e)
         {
             this.Close();
+            EditForm edit = new EditForm(info);
+            edit.Show();
         }
 
         private void btn_modifyoptionforms_delete_Click(object sender, EventArgs e)
@@ -34,7 +36,7 @@ namespace PasswordManager
             DialogResult dialogResult = MessageBox.Show("Are you sure?", "CHECK", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                this.Close();
+                this.Close();//to remove the messagebox popup of yes or no after selecting yes
                 DataBase db = new DataBase();
                 if(db.delete(info))
                 {

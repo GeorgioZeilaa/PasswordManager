@@ -28,6 +28,7 @@ namespace PasswordManager
 
             txt_login_password.PasswordChar = '*';
         }
+
         public int[] login()
         {
             int[] permission_and_id = new int[2];
@@ -94,6 +95,12 @@ namespace PasswordManager
         {
             Main main = new Main();
             main.Show();
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //to not allow spaces
+            e.Handled = (e.KeyChar == (char)Keys.Space);
         }
     }
 }

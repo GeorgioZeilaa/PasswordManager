@@ -134,9 +134,11 @@ namespace PasswordManager
             this.Controls.Add(this.btn_login_login);
             this.Controls.Add(this.lbl_login_username);
             this.Controls.Add(this.txt_login_username);
+            this.KeyPreview = true;
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

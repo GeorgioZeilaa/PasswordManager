@@ -79,5 +79,10 @@ namespace PasswordManager
             Main main = new Main();
             main.Show();
         }
+
+        private void Register_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
     }
 }

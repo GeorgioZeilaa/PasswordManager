@@ -244,9 +244,11 @@ namespace PasswordManager
             this.Controls.Add(this.lbl_add_app_account_username);
             this.Controls.Add(this.btn_add_app_account_create);
             this.Controls.Add(this.lbl_add_app_account);
+            this.KeyPreview = true;
             this.Name = "AddAppAccount";
             this.Text = "AddAppAccount";
             this.Load += new System.EventHandler(this.AddAppAccount_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AddAppAccount_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

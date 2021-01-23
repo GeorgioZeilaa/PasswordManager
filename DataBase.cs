@@ -34,7 +34,6 @@ namespace PasswordManager
             {
                 Console.WriteLine("ERROR:", e);
             }
-            
         }
 
         ~DataBase()
@@ -240,6 +239,55 @@ namespace PasswordManager
                 {
                     Console.WriteLine("ERROR:", e);
                     return false;
+                }
+            }
+        }
+
+        public bool modify(string[] info)
+        {
+            int size = info.Count() - 1;//getting the table name
+
+            if(info[size] == "WebsiteAccount")
+            {
+                using (var cmd = new MySqlCommand("UPDATE " + info[size] + " SET Username= @username, Password= @password, DateUpdated= @dateupdated, Name= @name, URL= @url  WHERE ID=@id", connection))
+                {
+                    try
+                    {
+                        cmd.Parameters.Add("@id", MySqlDbType.Blob).Value = info[0];
+                        cmd.Parameters.Add("@username", MySqlDbType.Blob).Value = info[2];
+                        cmd.Parameters.Add("@password", MySqlDbType.Blob).Value = info[3];
+                        cmd.Parameters.Add("@dateupdated", MySqlDbType.Blob).Value = DateTime.Now.ToString("dd/MM/yyyy,hh:mm:ss tt");
+                        cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = info[6];
+                        cmd.Parameters.Add("@url", MySqlDbType.Blob).Value = info[7];
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("ERROR:", e);
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                using (var cmd = new MySqlCommand("UPDATE " + info[size] + " SET Username= @username, Password= @password, DateUpdated= @dateupdated, Name= @name  WHERE ID=@id", connection))
+                {
+                    try
+                    {
+                        cmd.Parameters.Add("@id", MySqlDbType.Blob).Value = info[0];
+                        cmd.Parameters.Add("@username", MySqlDbType.Blob).Value = info[2];
+                        cmd.Parameters.Add("@password", MySqlDbType.Blob).Value = info[3];
+                        cmd.Parameters.Add("@dateupdated", MySqlDbType.Blob).Value = DateTime.Now.ToString("dd/MM/yyyy,hh:mm:ss tt");
+                        cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = info[6];
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("ERROR:", e);
+                        return false;
+                    }
                 }
             }
         }

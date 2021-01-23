@@ -142,9 +142,11 @@ namespace PasswordManager
             this.Controls.Add(this.txt_register_pasword1);
             this.Controls.Add(this.txt_register_username);
             this.Controls.Add(this.btn_register);
+            this.KeyPreview = true;
             this.Name = "Register";
             this.Text = "Register";
             this.Load += new System.EventHandler(this.Register_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Register_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

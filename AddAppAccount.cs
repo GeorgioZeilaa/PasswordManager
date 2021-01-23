@@ -83,7 +83,7 @@ namespace PasswordManager
         {
             account.Username = txt_add_app_account_username.Text;
             account.Password = txt_add_app_account_password.Text;
-            account.DateCreated = DateTime.Now.ToString("hh,mm,ss,dd,MM,yyyy");
+            account.DateCreated = DateTime.Now.ToString("dd/MM/yyyy,hh:mm:ss tt");
             account.DateUpdated = account.DateCreated;
             account.UserID = userID;
 
@@ -114,6 +114,12 @@ namespace PasswordManager
             //Generating a password function from the PasswordGenerator class will return a string of random characters
             PasswordGenerator generate = new PasswordGenerator();
             txt_add_app_account_password.Text =  generate.generatePassword();
+        }
+
+        private void AddAppAccount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //to not allow spaces
+            e.Handled = (e.KeyChar == (char)Keys.Space);
         }
     }
 }
