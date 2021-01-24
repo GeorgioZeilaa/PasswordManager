@@ -43,16 +43,20 @@ namespace PasswordManager
             // 
             this.data_grid_ViewPassword.AllowUserToAddRows = false;
             this.data_grid_ViewPassword.AllowUserToDeleteRows = false;
+            this.data_grid_ViewPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.data_grid_ViewPassword.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.data_grid_ViewPassword.Location = new System.Drawing.Point(38, 101);
             this.data_grid_ViewPassword.Name = "data_grid_ViewPassword";
             this.data_grid_ViewPassword.ReadOnly = true;
-            this.data_grid_ViewPassword.Size = new System.Drawing.Size(737, 150);
+            this.data_grid_ViewPassword.Size = new System.Drawing.Size(853, 150);
             this.data_grid_ViewPassword.TabIndex = 0;
             this.data_grid_ViewPassword.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btn_viewpassword_revealpasswords
             // 
+            this.btn_viewpassword_revealpasswords.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_viewpassword_revealpasswords.Location = new System.Drawing.Point(200, 299);
             this.btn_viewpassword_revealpasswords.Name = "btn_viewpassword_revealpasswords";
             this.btn_viewpassword_revealpasswords.Size = new System.Drawing.Size(114, 23);
@@ -63,6 +67,7 @@ namespace PasswordManager
             // 
             // btn_viewpassword_sort
             // 
+            this.btn_viewpassword_sort.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_viewpassword_sort.Location = new System.Drawing.Point(336, 299);
             this.btn_viewpassword_sort.Name = "btn_viewpassword_sort";
             this.btn_viewpassword_sort.Size = new System.Drawing.Size(75, 23);
@@ -73,6 +78,7 @@ namespace PasswordManager
             // 
             // btn_viewpassword_modify
             // 
+            this.btn_viewpassword_modify.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_viewpassword_modify.Location = new System.Drawing.Point(435, 299);
             this.btn_viewpassword_modify.Name = "btn_viewpassword_modify";
             this.btn_viewpassword_modify.Size = new System.Drawing.Size(75, 23);
@@ -83,6 +89,7 @@ namespace PasswordManager
             // 
             // btn_viewpassword_application
             // 
+            this.btn_viewpassword_application.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_viewpassword_application.Location = new System.Drawing.Point(239, 55);
             this.btn_viewpassword_application.Name = "btn_viewpassword_application";
             this.btn_viewpassword_application.Size = new System.Drawing.Size(75, 23);
@@ -93,6 +100,7 @@ namespace PasswordManager
             // 
             // btn_viewpassword_game
             // 
+            this.btn_viewpassword_game.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_viewpassword_game.Location = new System.Drawing.Point(336, 55);
             this.btn_viewpassword_game.Name = "btn_viewpassword_game";
             this.btn_viewpassword_game.Size = new System.Drawing.Size(75, 23);
@@ -103,6 +111,7 @@ namespace PasswordManager
             // 
             // btn_viewpassword_website
             // 
+            this.btn_viewpassword_website.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btn_viewpassword_website.Location = new System.Drawing.Point(435, 55);
             this.btn_viewpassword_website.Name = "btn_viewpassword_website";
             this.btn_viewpassword_website.Size = new System.Drawing.Size(75, 23);
@@ -115,7 +124,7 @@ namespace PasswordManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(916, 450);
             this.Controls.Add(this.btn_viewpassword_website);
             this.Controls.Add(this.btn_viewpassword_game);
             this.Controls.Add(this.btn_viewpassword_application);

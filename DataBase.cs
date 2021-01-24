@@ -291,5 +291,14 @@ namespace PasswordManager
                 }
             }
         }
+
+        public MySqlDataReader sort(string option)
+        {
+            using (var cmd = new MySqlCommand("SELECT * FROM " + option.ToString() + " ORDER BY DateUpdated ASC", connection))
+            {
+                MySqlDataReader reader = cmd.ExecuteReader();
+                return reader;
+            }
+        }
     }
 }

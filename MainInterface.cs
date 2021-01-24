@@ -49,6 +49,7 @@ namespace PasswordManager
 
         private void lbl_main_interface_view_passwords_Click(object sender, EventArgs e)
         {
+            //opens up a form of viewing passwords while passing on who is viewing and the permission as an array
             ViewPassword viewpassword = new ViewPassword(permission_and_id);
             viewpassword.ShowDialog();
         }

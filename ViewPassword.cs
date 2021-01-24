@@ -57,12 +57,37 @@ namespace PasswordManager
 
         private void btn_viewpassword_sort_Click(object sender, EventArgs e)
         {
-/*            string[] dateupdated = new string[data_grid_ViewPassword.ColumnCount];//to save dates
+            /*            int rowCount = data_grid_ViewPassword.RowCount;
+                        int columnCount = data_grid_ViewPassword.Columns.Count;
+                        string[,] info = new string[rowCount, columnCount];
 
-            for (int i = 0; i < data_grid_ViewPassword.Rows.Count; i++)
+                        for (int i = 0; i < rowCount; i++)
+                        {
+                            for (int j = 0; j < columnCount; j++)
+                            {
+                                info[i,j] = (data_grid_ViewPassword.Rows[i].Cells[j].Value.ToString());//extracting the selected row info into an array
+                            }
+                        }*/
+
+            //to know what the account type is
+            if (accountType == "ApplicationAccount")
             {
-                dateupdated[i] = data_grid_ViewPassword.Rows[i].Cells["DateUpdated"].Value.ToString();
-            }*/
+                DataTable info = new DataTable();
+                info.Load(db.sort(accountType));
+                data_grid_ViewPassword.DataSource = info;
+            }
+            if (accountType == "GameAccount")
+            {
+                DataTable info = new DataTable();
+                info.Load(db.sort(accountType));
+                data_grid_ViewPassword.DataSource = info;
+            }
+            if (accountType == "WebsiteAccount")
+            {
+                DataTable info = new DataTable();
+                info.Load(db.sort(accountType));
+                data_grid_ViewPassword.DataSource = info;
+            }
         }
 
         private void btn_viewpassword_modify_Click(object sender, EventArgs e)
@@ -90,7 +115,7 @@ namespace PasswordManager
                     }
                 }
 
-                //to know what the account type is
+/*                //to know what the account type is
                 if(accountType == "ApplicationAccount")
                 {
                     info[size-1] = accountType;
@@ -102,7 +127,9 @@ namespace PasswordManager
                 if (accountType == "WebsiteAccount")
                 {
                     info[size-1] = accountType;
-                }
+                }*/
+
+                info[size - 1] = accountType;
 
                 ModifyOptionForms modify = new ModifyOptionForms(info);
                 modify.Show();
@@ -119,6 +146,9 @@ namespace PasswordManager
             info.Load(db.viewPassword(permission_and_id,"ApplicationAccount"));
             data_grid_ViewPassword.DataSource = info;
             accountType = "ApplicationAccount";
+
+            //reseting the password button text to the correct because passwords are encrypted
+            btn_viewpassword_revealpasswords.Text = "Reveal Passwords";
         }
 
         private void btn_viewpassword_game_Click(object sender, EventArgs e)
@@ -127,6 +157,9 @@ namespace PasswordManager
             info.Load(db.viewPassword(permission_and_id, "GameAccount"));
             data_grid_ViewPassword.DataSource = info;
             accountType = "GameAccount";
+
+            //reseting the password button text to the correct because passwords are encrypted
+            btn_viewpassword_revealpasswords.Text = "Reveal Passwords";
         }
 
         private void btn_viewpassword_website_Click(object sender, EventArgs e)
@@ -135,6 +168,9 @@ namespace PasswordManager
             info.Load(db.viewPassword(permission_and_id, "WebsiteAccount"));
             data_grid_ViewPassword.DataSource = info;
             accountType = "WebsiteAccount";
+
+            //reseting the password button text to the correct because passwords are encrypted
+            btn_viewpassword_revealpasswords.Text = "Reveal Passwords";
         }
     }
 }
