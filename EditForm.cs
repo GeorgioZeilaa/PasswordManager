@@ -33,6 +33,11 @@ namespace PasswordManager
             txt_editform_password.Enabled = false;
             lbl_editform_url.Visible = false;
 
+            //limiting the amount of characters allowed
+            txt_editform_username.MaxLength = 50;
+            txt_editform_name.MaxLength = 50;
+            txt_editform_url.MaxLength = 200;
+
             btn_editform_reset_Click(sender, e);//to set everything correctly
         }
 

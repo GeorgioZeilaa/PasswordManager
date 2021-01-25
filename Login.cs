@@ -26,7 +26,12 @@ namespace PasswordManager
             lbl_login_fill_field.Visible = false;
             lbl_login_incorrect_info.Visible = false;
 
+            //password input will not be visible
             txt_login_password.PasswordChar = '*';
+
+            //limiting the amount of characters allowed
+            txt_login_username.MaxLength = 50;
+            txt_login_password.MaxLength = 128;
         }
 
         public int[] login()

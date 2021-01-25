@@ -17,6 +17,13 @@ namespace PasswordManager
         public AddAppAccount()
         {
             InitializeComponent();
+            //limiting the amount of characters allowed
+            txt_add_app_account_applicationname.MaxLength = 50;
+            txt_add_app_account_developer.MaxLength = 50;
+            txt_add_app_account_password.MaxLength = 128;
+            txt_add_app_account_username.MaxLength = 50;
+            txt_add_app_account_website_name.MaxLength = 50;
+            txt_add_app_account_website_url.MaxLength = 200;
         }
         public virtual void Add(AccountAppDetail detail)
         {

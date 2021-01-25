@@ -18,8 +18,14 @@ namespace PasswordManager
         public Search(int[] permission_and_id)
         {
             InitializeComponent();
+            //populate the permission level and userID
             this.permission_and_id = permission_and_id;
+
+            //to disable modify button until a result is found
             btn_search_modify.Enabled = false;
+
+            //limiting the amount of characters allowed
+            txt_search_name.MaxLength = 50;
         }
 
         private void btn_search_search_Click(object sender, EventArgs e)
@@ -27,6 +33,7 @@ namespace PasswordManager
             string search = txt_search_name.Text;
             if (!string.IsNullOrEmpty(search))
             {
+                //to check which type of password is chosen
                 if (rdr_search_website.Checked)
                 {
                     DataTable info = new DataTable();
@@ -62,10 +69,8 @@ namespace PasswordManager
 
         private void btn_search_modify_Click(object sender, EventArgs e)
         {
-            int size = data_grid_view_search_result.Columns.Count + 1;
+            int size = data_grid_view_search_result.Columns.Count + 1;//plus 1 due to start assigning value not starting with 0
             string[] info = new string[size];
-
-            Encryption pass = new Encryption();
 
             //making sure only one row is selected to modify
             if (data_grid_view_search_result.SelectedRows.Count == 1)
@@ -78,7 +83,7 @@ namespace PasswordManager
                     }
                 }
 
-                info[size - 1] = accountType;
+                info[size - 1] = accountType;//to add the account type to the last value in the array that contains the record
 
                 ModifyOptionForms modify = new ModifyOptionForms(info);
                 modify.Show();

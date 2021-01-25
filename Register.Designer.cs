@@ -31,7 +31,7 @@ namespace PasswordManager
         {
             this.btn_register = new System.Windows.Forms.Button();
             this.txt_register_username = new System.Windows.Forms.TextBox();
-            this.txt_register_pasword1 = new System.Windows.Forms.TextBox();
+            this.txt_register_password1 = new System.Windows.Forms.TextBox();
             this.lbl_register_username = new System.Windows.Forms.Label();
             this.lbl_register_password1 = new System.Windows.Forms.Label();
             this.txt_register_password2 = new System.Windows.Forms.TextBox();
@@ -58,12 +58,12 @@ namespace PasswordManager
             this.txt_register_username.Size = new System.Drawing.Size(100, 20);
             this.txt_register_username.TabIndex = 1;
             // 
-            // txt_register_pasword1
+            // txt_register_password1
             // 
-            this.txt_register_pasword1.Location = new System.Drawing.Point(222, 112);
-            this.txt_register_pasword1.Name = "txt_register_pasword1";
-            this.txt_register_pasword1.Size = new System.Drawing.Size(100, 20);
-            this.txt_register_pasword1.TabIndex = 2;
+            this.txt_register_password1.Location = new System.Drawing.Point(222, 112);
+            this.txt_register_password1.Name = "txt_register_password1";
+            this.txt_register_password1.Size = new System.Drawing.Size(100, 20);
+            this.txt_register_password1.TabIndex = 2;
             // 
             // lbl_register_username
             // 
@@ -139,7 +139,7 @@ namespace PasswordManager
             this.Controls.Add(this.txt_register_password2);
             this.Controls.Add(this.lbl_register_password1);
             this.Controls.Add(this.lbl_register_username);
-            this.Controls.Add(this.txt_register_pasword1);
+            this.Controls.Add(this.txt_register_password1);
             this.Controls.Add(this.txt_register_username);
             this.Controls.Add(this.btn_register);
             this.KeyPreview = true;
@@ -156,7 +156,7 @@ namespace PasswordManager
 
         private System.Windows.Forms.Button btn_register;
         private System.Windows.Forms.TextBox txt_register_username;
-        private System.Windows.Forms.TextBox txt_register_pasword1;
+        private System.Windows.Forms.TextBox txt_register_password1;
         private System.Windows.Forms.Label lbl_register_username;
         private System.Windows.Forms.Label lbl_register_password1;
         private System.Windows.Forms.TextBox txt_register_password2;
