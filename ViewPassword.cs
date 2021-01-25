@@ -19,16 +19,17 @@ namespace PasswordManager
 
         public ViewPassword(int []permission_and_id)
         {
-            this.permission_and_id = permission_and_id;
             InitializeComponent();
+
+            //to be used to check with permission and userID
+            this.permission_and_id = permission_and_id;
         }
         private void ViewPassword_Load(object sender, EventArgs e)
         {
-
-        }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            //disabling button due to no data being shown in datagridview at load
+            btn_viewpassword_revealpasswords.Enabled = false;
+            btn_viewpassword_sort.Enabled = false;
+            btn_viewpassword_modify.Enabled = false;
         }
 
         private void btn_viewpassword_revealpasswords_Click(object sender, EventArgs e)
@@ -57,18 +58,6 @@ namespace PasswordManager
 
         private void btn_viewpassword_sort_Click(object sender, EventArgs e)
         {
-            /*            int rowCount = data_grid_ViewPassword.RowCount;
-                        int columnCount = data_grid_ViewPassword.Columns.Count;
-                        string[,] info = new string[rowCount, columnCount];
-
-                        for (int i = 0; i < rowCount; i++)
-                        {
-                            for (int j = 0; j < columnCount; j++)
-                            {
-                                info[i,j] = (data_grid_ViewPassword.Rows[i].Cells[j].Value.ToString());//extracting the selected row info into an array
-                            }
-                        }*/
-
             //to know what the account type is
             if (accountType == "ApplicationAccount")
             {
@@ -132,8 +121,7 @@ namespace PasswordManager
             data_grid_ViewPassword.DataSource = info;
             accountType = "ApplicationAccount";
 
-            //reseting the password button text to the correct because passwords are encrypted
-            btn_viewpassword_revealpasswords.Text = "Reveal Passwords";
+            buttonCheck();
         }
 
         private void btn_viewpassword_game_Click(object sender, EventArgs e)
@@ -143,8 +131,7 @@ namespace PasswordManager
             data_grid_ViewPassword.DataSource = info;
             accountType = "GameAccount";
 
-            //reseting the password button text to the correct because passwords are encrypted
-            btn_viewpassword_revealpasswords.Text = "Reveal Passwords";
+            buttonCheck();
         }
 
         private void btn_viewpassword_website_Click(object sender, EventArgs e)
@@ -154,6 +141,23 @@ namespace PasswordManager
             data_grid_ViewPassword.DataSource = info;
             accountType = "WebsiteAccount";
 
+            buttonCheck();
+        }
+
+        private void buttonCheck()
+        {
+            if (data_grid_ViewPassword.Rows.Count == 0)
+            {
+                btn_viewpassword_revealpasswords.Enabled = false;
+                btn_viewpassword_sort.Enabled = false;
+                btn_viewpassword_modify.Enabled = false;
+            }
+            else
+            {
+                btn_viewpassword_revealpasswords.Enabled = true;
+                btn_viewpassword_sort.Enabled = true;
+                btn_viewpassword_modify.Enabled = true;
+            }
             //reseting the password button text to the correct because passwords are encrypted
             btn_viewpassword_revealpasswords.Text = "Reveal Passwords";
         }

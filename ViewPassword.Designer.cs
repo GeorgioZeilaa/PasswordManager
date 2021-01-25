@@ -52,7 +52,6 @@ namespace PasswordManager
             this.data_grid_ViewPassword.ReadOnly = true;
             this.data_grid_ViewPassword.Size = new System.Drawing.Size(853, 150);
             this.data_grid_ViewPassword.TabIndex = 0;
-            this.data_grid_ViewPassword.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btn_viewpassword_revealpasswords
             // 
