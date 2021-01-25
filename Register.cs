@@ -26,6 +26,8 @@ namespace PasswordManager
 
             txt_register_pasword1.PasswordChar = '*';
             txt_register_password2.PasswordChar = '*';
+
+            txt_register_pasword1.MaxLength = 128;
         }
 
         public bool register()

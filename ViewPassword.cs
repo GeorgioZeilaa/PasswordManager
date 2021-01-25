@@ -73,19 +73,19 @@ namespace PasswordManager
             if (accountType == "ApplicationAccount")
             {
                 DataTable info = new DataTable();
-                info.Load(db.sort(accountType));
+                info.Load(db.sort(permission_and_id, accountType));
                 data_grid_ViewPassword.DataSource = info;
             }
             if (accountType == "GameAccount")
             {
                 DataTable info = new DataTable();
-                info.Load(db.sort(accountType));
+                info.Load(db.sort(permission_and_id, accountType));
                 data_grid_ViewPassword.DataSource = info;
             }
             if (accountType == "WebsiteAccount")
             {
                 DataTable info = new DataTable();
-                info.Load(db.sort(accountType));
+                info.Load(db.sort(permission_and_id, accountType));
                 data_grid_ViewPassword.DataSource = info;
             }
         }
@@ -96,7 +96,6 @@ namespace PasswordManager
             string[] info = new string[size];
 
             Encryption pass = new Encryption();
-
 
             //to make sure that the password is encrypted when modify button is pressed
             if (btn_viewpassword_revealpasswords.Text == "Hide Passwords")
@@ -114,20 +113,6 @@ namespace PasswordManager
                         info[i] = r.Cells[i].Value.ToString();//extracting the selected row info into an array
                     }
                 }
-
-/*                //to know what the account type is
-                if(accountType == "ApplicationAccount")
-                {
-                    info[size-1] = accountType;
-                }
-                if (accountType == "GameAccount")
-                {
-                    info[size-1] = accountType;
-                }
-                if (accountType == "WebsiteAccount")
-                {
-                    info[size-1] = accountType;
-                }*/
 
                 info[size - 1] = accountType;
 

@@ -292,12 +292,47 @@ namespace PasswordManager
             }
         }
 
-        public MySqlDataReader sort(string option)
+        public MySqlDataReader sort(int[] permission_and_id, string option)
         {
-            using (var cmd = new MySqlCommand("SELECT * FROM " + option.ToString() + " ORDER BY DateUpdated ASC", connection))
+            if (permission_and_id[0] == 2)
             {
-                MySqlDataReader reader = cmd.ExecuteReader();
-                return reader;
+                using (var cmd = new MySqlCommand("SELECT * FROM " + option.ToString() + " ORDER BY DateUpdated DESC", connection))
+                {
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    return reader;
+                }
+            }
+            else
+            {
+                using (var cmd = new MySqlCommand("SELECT * FROM " + option.ToString() + " WHERE UserID=@userid ORDER BY DateUpdated DESC", connection))
+                {
+                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = permission_and_id[1];
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    return reader;
+                }
+            }
+        }
+
+        public MySqlDataReader search(int[] permission_and_id, string option, string search)
+        {
+            if (permission_and_id[0] == 2)
+            {
+                using (var cmd = new MySqlCommand("SELECT * FROM " + option.ToString() + " WHERE Name= @name", connection))
+                {
+                    cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = search;
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    return reader;
+                }
+            }
+            else
+            {
+                using (var cmd = new MySqlCommand("SELECT * FROM " + option.ToString() + " WHERE UserID=@userid AND Name= @name", connection))
+                {
+                    cmd.Parameters.Add("@userid", MySqlDbType.Blob).Value = permission_and_id[1];
+                    cmd.Parameters.Add("@name", MySqlDbType.Blob).Value = search;
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    return reader;
+                }
             }
         }
     }

@@ -30,16 +30,6 @@ namespace PasswordManager
             
         }
 
-        public void search()
-        {
-
-        }
-
-        public void sort()
-        {
-
-        }
-
         public void add()
         {
             AddAppAccount addappuser = new AddAppAccount();
@@ -56,7 +46,8 @@ namespace PasswordManager
 
         private void lbl_main_interface_search_Click(object sender, EventArgs e)
         {
-
+            Search search = new Search(permission_and_id);
+            search.ShowDialog();
         }
 
         private void lbl_main_interface_add_Click(object sender, EventArgs e)
