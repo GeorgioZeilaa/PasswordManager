@@ -58,25 +58,10 @@ namespace PasswordManager
 
         private void btn_viewpassword_sort_Click(object sender, EventArgs e)
         {
-            //to know what the account type is
-            if (accountType == "ApplicationAccount")
-            {
-                DataTable info = new DataTable();
-                info.Load(db.sort(permission_and_id, accountType));
-                data_grid_ViewPassword.DataSource = info;
-            }
-            if (accountType == "GameAccount")
-            {
-                DataTable info = new DataTable();
-                info.Load(db.sort(permission_and_id, accountType));
-                data_grid_ViewPassword.DataSource = info;
-            }
-            if (accountType == "WebsiteAccount")
-            {
-                DataTable info = new DataTable();
-                info.Load(db.sort(permission_and_id, accountType));
-                data_grid_ViewPassword.DataSource = info;
-            }
+            DataTable info = new DataTable();
+            info.Load(db.sort(permission_and_id, accountType));
+            data_grid_ViewPassword.DataSource = info;
+            buttonCheck();
         }
 
         private void btn_viewpassword_modify_Click(object sender, EventArgs e)
@@ -116,32 +101,30 @@ namespace PasswordManager
 
         private void btn_viewpassword_application_Click(object sender, EventArgs e)
         {
-            DataTable info = new DataTable();
-            info.Load(db.viewPassword(permission_and_id,"ApplicationAccount"));
-            data_grid_ViewPassword.DataSource = info;
             accountType = "ApplicationAccount";
-
+            tablePopulate();
             buttonCheck();
         }
 
         private void btn_viewpassword_game_Click(object sender, EventArgs e)
         {
-            DataTable info = new DataTable();
-            info.Load(db.viewPassword(permission_and_id, "GameAccount"));
-            data_grid_ViewPassword.DataSource = info;
             accountType = "GameAccount";
-
+            tablePopulate();
             buttonCheck();
         }
 
         private void btn_viewpassword_website_Click(object sender, EventArgs e)
         {
-            DataTable info = new DataTable();
-            info.Load(db.viewPassword(permission_and_id, "WebsiteAccount"));
-            data_grid_ViewPassword.DataSource = info;
             accountType = "WebsiteAccount";
-
+            tablePopulate();
             buttonCheck();
+        }
+
+        private void tablePopulate()
+        {
+            DataTable info = new DataTable();
+            info.Load(db.viewPassword(permission_and_id, accountType));
+            data_grid_ViewPassword.DataSource = info;
         }
 
         private void buttonCheck()
