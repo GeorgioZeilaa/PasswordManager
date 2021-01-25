@@ -69,8 +69,6 @@ namespace PasswordManager
             int size = data_grid_ViewPassword.Columns.Count + 1;
             string[] info = new string[size];
 
-            Encryption pass = new Encryption();
-
             //to make sure that the password is encrypted when modify button is pressed
             if (btn_viewpassword_revealpasswords.Text == "Hide Passwords")
             {

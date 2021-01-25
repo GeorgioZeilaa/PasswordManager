@@ -55,6 +55,8 @@ namespace PasswordManager
                     info.Load(db.search(permission_and_id, accountType, search));//retrieve the results of the data
                     data_grid_view_search_result.DataSource = info;
                 }
+
+                //to check if the data has any result shown
                 if (data_grid_view_search_result.Rows.Count == 0)
                 {
                     MessageBox.Show("Not Found!");

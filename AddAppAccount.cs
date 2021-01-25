@@ -88,33 +88,40 @@ namespace PasswordManager
         }
         private void btn_add_app_account_create_Click(object sender, EventArgs e)
         {
-            account.Username = txt_add_app_account_username.Text;
-            account.Password = txt_add_app_account_password.Text;
-            account.DateCreated = DateTime.Now.ToString("dd/MM/yyyy,hh:mm:ss tt");
-            account.DateUpdated = account.DateCreated;
-            account.UserID = userID;
-
-            //checking if any fields are empty
-            if (!string.IsNullOrEmpty(account.Username) && !string.IsNullOrEmpty(account.Password))
+            if (rdb_add_app_account_game.Checked || rdb_add_app_account_website.Checked || rdb_add_app_account_application.Checked)
             {
-                if (rdb_add_app_account_application.Checked)
+                account.Username = txt_add_app_account_username.Text;
+                account.Password = txt_add_app_account_password.Text;
+                account.DateCreated = DateTime.Now.ToString("dd/MM/yyyy,hh:mm:ss tt");
+                account.DateUpdated = account.DateCreated;
+                account.UserID = userID;
+
+                //checking if any fields are empty
+                if (!string.IsNullOrEmpty(account.Username) && !string.IsNullOrEmpty(account.Password))
                 {
-                    AddAppAccount app = new ApplicationAccount();
-                    app.Add(account);
+                    if (rdb_add_app_account_application.Checked)
+                    {
+                        AddAppAccount app = new ApplicationAccount();
+                        app.Add(account);
+                    }
+                    if (rdb_add_app_account_game.Checked)
+                    {
+                        AddAppAccount game = new GameAccount();
+                        game.Add(account);
+                    }
+                    if (rdb_add_app_account_website.Checked)
+                    {
+                        AddAppAccount website = new WebsiteAccount();
+                        website.Add(account);
+                    }
+                    MessageBox.Show("Succussfully Added New Account!");
+                    this.Close();
                 }
-                if (rdb_add_app_account_game.Checked)
-                {
-                    AddAppAccount game = new GameAccount();
-                    game.Add(account);
-                }
-                if (rdb_add_app_account_website.Checked)
-                {
-                    AddAppAccount website = new WebsiteAccount();
-                    website.Add(account);
-                }
-                MessageBox.Show("Succussfully Added New Account!");
             }
-            this.Close();
+            else
+            {
+                MessageBox.Show("Make sure to choose a type of an application!");
+            }
         }
         private void btn_add_app_account_generatepassword_Click(object sender, EventArgs e)
         {
@@ -127,6 +134,11 @@ namespace PasswordManager
         {
             //to not allow spaces
             e.Handled = (e.KeyChar == (char)Keys.Space);
+        }
+
+        private void lbl_add_app_account_website_url_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

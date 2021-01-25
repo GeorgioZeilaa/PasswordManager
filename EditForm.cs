@@ -103,7 +103,12 @@ namespace PasswordManager
             }
             //make sure to reset the password field
             btn_editform_modifypassword.Text = "Modify";
-            txt_editform_password.Text = info[3];
+
+
+            byte[] bytes = Encoding.Default.GetBytes(info[3]);
+            info[3] = Encoding.UTF8.GetString(bytes);
+            txt_editform_password.Text = info[3];//problem
+
             txt_editform_password.Enabled = false;
         }
 
